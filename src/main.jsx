@@ -8,6 +8,9 @@ import {
 import Root from './Layouts/Root';
 import ErrorPage from './Pages/ErrorPage';
 import Home from './Pages/Home';
+import FirebaseProvider from './Firebase/FirebaseProvider';
+import Login from './Pages/Login';
+import NeedVolunteer from './Pages/NeedVolunteer';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -18,11 +21,19 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home/>,
       },
+      {
+        path:'/login',
+        element:<Login></Login>
+      },
+      {
+        path:'/needvolunteer',
+        element:<NeedVolunteer></NeedVolunteer>
+      }
     ]
   },
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-  <RouterProvider router={router} />
+ <FirebaseProvider><RouterProvider router={router}></RouterProvider></FirebaseProvider>
   </React.StrictMode>,
 )

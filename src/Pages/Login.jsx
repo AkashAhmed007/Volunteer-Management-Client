@@ -1,9 +1,9 @@
-const Home = () => {
+const Login = () => {
     return (
         <div className="min-h-screen my-20">
-            <h1>This is home</h1>
+            This is login page
         </div>
     );
 };
 
-export default Home;
+export default Login;
