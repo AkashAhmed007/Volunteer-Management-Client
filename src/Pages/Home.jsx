@@ -1,13 +1,30 @@
+import { useLoaderData } from "react-router-dom";
 import Banner from "../Components/Banner";
-
+import VolunteerNeedsNow from "../Components/VolunteerNeedsNow";
+import Hero from "../Components/Hero";
 const Home = () => {
-    return (
-        <div className="min-h-screen my-20">
-           <div>
-           <Banner></Banner>
-           </div>
-        </div>
-    );
+  const volunteerNeed = useLoaderData();
+  return (
+    <div className="min-h-screen my-20">
+      <div>
+        <Hero></Hero>
+      </div>
+      <div>
+        <Banner></Banner>
+      </div>
+      <h1 className="text-2xl bg-gray-200 text-center p-12 mt-5">
+        This is Volunteer Needs Now section
+      </h1>
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-2 my-5">
+        {volunteerNeed.map((volunteer) => (
+          <VolunteerNeedsNow key={volunteer._id}></VolunteerNeedsNow>
+        ))}
+      </div>
+      <div className=" text-center">
+        <button className="btn btn-primary  w-1/2">View All</button>
+      </div>
+    </div>
+  );
 };
 
 export default Home;

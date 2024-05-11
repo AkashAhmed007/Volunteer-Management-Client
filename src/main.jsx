@@ -12,6 +12,9 @@ import FirebaseProvider from './Firebase/FirebaseProvider';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import NeedVolunteer from './Pages/NeedVolunteer';
+import ProtectedRoute from './PrivateRoute/ProtectedRoute';
+import AddVolunteer from './Pages/AddVolunteer';
+import MyPost from './Pages/MyPost';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,6 +24,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home/>,
+        loader: ()=>fetch('http://localhost:8000/volunteerNeed')
       },
       {
         path:'/login',
@@ -32,7 +36,15 @@ const router = createBrowserRouter([
       },
       {
         path:'/needvolunteer',
-        element:<NeedVolunteer></NeedVolunteer>
+        element:<ProtectedRoute><NeedVolunteer></NeedVolunteer></ProtectedRoute>
+      },
+      {
+        path:'/addvolunteer',
+        element:<AddVolunteer></AddVolunteer>
+      },
+      {
+        path:'/mypost',
+        element:<MyPost></MyPost>
       }
     ]
   },

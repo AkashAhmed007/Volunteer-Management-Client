@@ -40,10 +40,10 @@ const Navbar = () => {
                     <summary>My Profile</summary>
                     <ul className="rounded-t-none bg-gray-400">
                       <li>
-                        <a>Add Volunteer Post</a>
+                        <Link to='/addvolunteer'>Add Volunteer Post</Link>
                       </li>
                       <li>
-                        <a>Manage My Post</a>
+                        <Link to='/mypost'>Manage My Post</Link>
                       </li>
                     </ul>
                   </details>
@@ -52,12 +52,12 @@ const Navbar = () => {
             </div>
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost text-xl">
-          Volunteer Management
+        <Link to="/" className="text-2xl">
+          HELP THE FUTURE
         </Link>
       </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
+      <div className="navbar-center hidden lg:flex ml-5">
+        <ul className="menu menu-horizontal px-2">
           <li className="bg-gray-400 border rounded-lg">
             <Link to="/">Home</Link>
           </li>
@@ -72,10 +72,10 @@ const Navbar = () => {
                 <summary className="bg-gray-400">My Profile</summary>
                 <ul className="p-2 rounded-t-none m-2 w-[200px] bg-gray-400">
                   <li>
-                    <a>Add Volunteer Post</a>
+                    <Link to='/addvolunteer'>Add Volunteer Post</Link>
                   </li>
                   <li>
-                    <a>Manage My Post</a>
+                    <Link to='/mypost'>Manage My Post</Link>
                   </li>
                 </ul>
               </details>
