@@ -4,7 +4,7 @@ import { AuthContext } from "../Firebase/FirebaseProvider";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   return (
-    <div className="navbar w-full fixed top-0 z-10">
+    <div className="navbar w-full fixed top-0 z-10 bg-black text-white">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -25,7 +25,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] px-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 z-[1] px-2 rounded-box w-52 bg-gray-400"
           >
             <li>
               <Link to="/">Home</Link>
@@ -34,11 +34,11 @@ const Navbar = () => {
               <Link to="/needvolunteer">Need Volunteer</Link>
             </li>
             <div className="flex-none">
-              <ul className="menu menu-horizontal">
+              <ul className="menu menu-horizontal bg-gray-400">
                 <li>
                   <details>
                     <summary>My Profile</summary>
-                    <ul className="p-2 bg-base-100 rounded-t-none">
+                    <ul className="rounded-t-none bg-gray-400">
                       <li>
                         <a>Add Volunteer Post</a>
                       </li>
@@ -58,10 +58,10 @@ const Navbar = () => {
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <li>
+          <li className="bg-gray-400 border rounded-lg">
             <Link to="/">Home</Link>
           </li>
-          <li className="ml-5">
+          <li className="ml-5 bg-gray-400 border rounded-lg">
             <Link to="/needvolunteer">Need Volunteer</Link>
           </li>
         </ul>
@@ -69,8 +69,8 @@ const Navbar = () => {
           <ul className="menu menu-horizontal">
             <li>
               <details>
-                <summary>My Profile</summary>
-                <ul className="p-2 bg-base-100 rounded-t-none m-2">
+                <summary className="bg-gray-400">My Profile</summary>
+                <ul className="p-2 rounded-t-none m-2 w-[200px] bg-gray-400">
                   <li>
                     <a>Add Volunteer Post</a>
                   </li>
