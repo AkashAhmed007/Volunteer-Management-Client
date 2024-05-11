@@ -117,7 +117,7 @@ const Navbar = () => {
             </ul>
           </div>
         ) : (
-          <Link to="/login" className="font-bold text-xl mr-5">
+          <Link to="/login" className="text-xl mr-5">
             Login
           </Link>
         )}

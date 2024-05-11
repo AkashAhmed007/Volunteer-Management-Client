@@ -1,4 +1,62 @@
+import { Link } from "react-router-dom";
+import { useContext,useEffect,useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import Swal from "sweetalert2";
+import { AuthContext } from "../Firebase/FirebaseProvider";
 const Login = () => {
+const { user, signInUser, googleLogin} = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [showPassword, setShowPassword] = useState(false);
+  const [loginError, setLoginError] = useState("");
+  const handleSocialLogin = (socialProvider) => {
+    socialProvider()
+    .then((result) => {
+      if (result.user) {
+        Swal.fire({
+          title: "You have logged in successfully!",
+          text: "Do you want to continue",
+          icon: "success",
+          confirmButtonText: "Ok",
+        });
+       
+      } else {
+        alert("Please Register first");
+      }
+      navigate(location?.state || "/",{replace:true});
+    });
+  };
+  
+  useEffect(() => {
+    if (user) navigate(location?.state);
+  },[]);
+  
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+const onSubmit = (data) => {
+    const { email, password } = data;
+    signInUser(email, password)
+      .then((result) => {
+        if (result.user) {
+          Swal.fire({
+            title: "You have logged in successfully!",
+            text: "Do you want to continue",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+          navigate(location?.state || "/",{replace:true});
+        }
+      })
+      .catch((error) => {
+        setLoginError(error.message);
+      });
+  };
   return (
     <div className="min-h-screen my-20">
       <div className="container px-6 mx-auto bg-gray-600">
@@ -19,46 +77,118 @@ const Login = () => {
             </p>
           </div>
 
-          <div className="flex mt-8 lg:w-1/2 lg:justify-end lg:mt-0">
-            <div className="w-full max-w-md bg-white rounded-lg dark:bg-gray-800">
+          <div className="flex mt-10 lg:w-1/2 lg:justify-end lg:mt-10 ">
+            <div className="w-full max-w-md mt-16 rounded-lg dark:bg-gray-800">
               <div className="px-6 py-8 text-center">
-                <h2 className="text-2xl font-semibold text-gray-700 dark:text-white fo">
-                  Sign In
-                </h2>
-
-                <div className="mt-4">
-                  <input
-                    className="block w-full px-4 py-2 text-gray-700 placeholder-gray-400 bg-white border rounded-md dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-500 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:ring-blue-300 focus:outline-none focus:ring"
-                    type="email"
-                    placeholder="Email address"
-                    aria-label="Email address"
-                  />
-                  <input
-                    className="block w-full px-4 py-2 mt-4 text-gray-700 placeholder-gray-400 bg-white border rounded-md dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-500 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:ring-blue-300 focus:outline-none focus:ring"
-                    type="password"
-                    placeholder="Password"
-                    aria-label="Password"
-                  />
-                </div>
-
-                <div className="flex items-center justify-between mt-4">
-                  <a
-                    href="#"
-                    className="text-sm text-gray-600 dark:text-gray-200 hover:underline"
-                  >
-                    Forget Password?
-                  </a>
-
-                  <button className="px-6 py-2 font-medium text-white transition-colors duration-300 transform bg-gray-900 rounded-md hover:bg-gray-800 dark:hover:bg-gray-700 focus:outline-none focus:bg-gray-800 dark:focus:bg-gray-700">
-                    Sign In
-                  </button>
+                <div className="min-h-screen my-20">
+                  <div className="w-full mx-auto max-w-md p-4 rounded-lg border bg-white shadow sm:p-8 dark:bg-gray-500 dark:text-gray-800">
+                    <h2 className="mb-3 text-3xl font-bold text-center">
+                      Login to your account
+                    </h2>
+                    <p className="text-sm text-center dark:text-gray-600">
+                      Dont have account?
+                      <Link
+                        to="/register"
+                        href="#"
+                        className="focus:underline hover:underline text-blue-600 ml-3"
+                      >
+                        Sign up here
+                      </Link>
+                    </p>
+                    <div className="my-6 space-y-4">
+                      <button
+                        onClick={() => handleSocialLogin(googleLogin)}
+                        aria-label="Login with Google"
+                        type="button"
+                        className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-600 focus:dark:ring-violet-600"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 32 32"
+                          className="w-5 h-5 fill-current"
+                        >
+                          <path d="M16.318 13.714v5.484h9.078c-0.37 2.354-2.745 6.901-9.078 6.901-5.458 0-9.917-4.521-9.917-10.099s4.458-10.099 9.917-10.099c3.109 0 5.193 1.318 6.38 2.464l4.339-4.182c-2.786-2.599-6.396-4.182-10.719-4.182-8.844 0-16 7.151-16 16s7.156 16 16 16c9.234 0 15.365-6.49 15.365-15.635 0-1.052-0.115-1.854-0.255-2.651z"></path>
+                        </svg>
+                        <p>Login with Google</p>
+                      </button>
+                    </div>
+                    <div className="flex items-center w-full my-4">
+                      <hr className="w-full dark:text-gray-600" />
+                      <p className="px-3 dark:text-gray-600">OR</p>
+                      <hr className="w-full dark:text-gray-600" />
+                    </div>
+                    <form
+                      onSubmit={handleSubmit(onSubmit)}
+                      id="form"
+                      className="space-y-6"
+                    >
+                      <div className="space-y-1 text-sm">
+                        <label
+                          htmlFor="email"
+                          className="block dark:text-gray-600"
+                        >
+                          Email
+                        </label>
+                        <input
+                          {...register("email", { required: true })}
+                          type="email"
+                          name="email"
+                          id="email"
+                          placeholder="Email"
+                          className="w-full px-4 py-3  border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
+                        />
+                        {errors.email && (
+                          <span className="text-red-500">
+                            This field is required
+                          </span>
+                        )}
+                      </div>
+                      <div className="space-y-1 text-sm">
+                        <label
+                          htmlFor="password"
+                          className="block dark:text-gray-600"
+                        >
+                          Password
+                        </label>
+                        <div className="flex justify-center items-center">
+                          <input
+                            {...register("password", { required: true })}
+                            type={showPassword ? "text" : "password"}
+                            name="password"
+                            id="password"
+                            placeholder="Password"
+                            className="w-full px-4 py-3 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
+                          />
+                          <span
+                            className=""
+                            onClick={() => setShowPassword(!showPassword)}
+                          >
+                            {showPassword ? (
+                              <FaEyeSlash></FaEyeSlash>
+                            ) : (
+                              <FaEye></FaEye>
+                            )}
+                          </span>
+                        </div>
+                        {errors.password && (
+                          <span className="text-red-500">
+                            This field is required
+                          </span>
+                        )}
+                        {loginError && (
+                          <p className="text-red-500">{loginError}</p>
+                        )}
+                      </div>
+                      <button className="block w-full p-3 text-center rounded-sm dark:text-gray-50 dark:bg-violet-600 bg-[#27b6de] text-white">
+                        Sign in
+                      </button>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-         
         </div>
-       
       </div>
     </div>
   );
