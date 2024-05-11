@@ -24,7 +24,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home/>,
-        loader: ()=>fetch('http://localhost:8000/volunteerNeed')
+        loader: ()=>fetch('http://localhost:8000/addvolunteerdata')
       },
       {
         path:'/login',
@@ -40,11 +40,16 @@ const router = createBrowserRouter([
       },
       {
         path:'/addvolunteer',
-        element:<AddVolunteer></AddVolunteer>
+        element:<ProtectedRoute><AddVolunteer></AddVolunteer></ProtectedRoute>
       },
       {
         path:'/mypost',
         element:<MyPost></MyPost>
+      },
+      {
+        path:'/addvolunteerdata/:id',
+        element:<ProtectedRoute><NeedVolunteer></NeedVolunteer></ProtectedRoute>,
+        loader:({params})=>fetch(`http://localhost:8000/addvolunteerdata/${params.id}`)
       }
     ]
   },
