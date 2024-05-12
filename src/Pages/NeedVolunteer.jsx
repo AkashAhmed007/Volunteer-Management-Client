@@ -1,12 +1,22 @@
+import { useLoaderData } from "react-router-dom";
+import NeedVolunteerCard from "../Components/NeedVolunteerCard";
 const NeedVolunteer = () => {
+  const needVolunteer = useLoaderData()
+  const handleSearch = (e)=>{
+    e.preventDefault();
+    const search = e.target.value
+    console.log(search)
+  }
   return (
     <>
     <div className="min-h-screen my-20">
-      <div className="bg-[url('https://i.ibb.co/tQ0T4Db/pexels-rdne-6646918.jpg')] bg-no-repeat bg-cover bg-center w-full h-96 flex flex-col items-center justify-center mb-5">
+      <div className="bg-[url('https://i.ibb.co/wB26ZL8/pexels-cottonbro-6590920.jpg')] bg-no-repeat bg-cover bg-center w-full h-96 flex flex-col items-center justify-center mb-5">
         <h1 className="text-5xl text-white font-bold">Need Volunteer</h1>
         <div className="w-1/2 mx-auto mt-8">
           <label className="input input-bordered flex items-center gap-2">
-            <input type="text" className="grow" placeholder="Search" />
+            <form  onClick={handleSearch}>
+            <input type="text" name='search' className="grow" placeholder="Search" />
+            <button className="ml-96">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
@@ -19,8 +29,15 @@ const NeedVolunteer = () => {
                 clipRule="evenodd"
               />
             </svg>
+            </button>
+            </form>
           </label>
         </div>
+      </div>
+      <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-4 m-5">
+        {
+          needVolunteer.map(volunteer=><NeedVolunteerCard key={volunteer._id} volunteer={volunteer}></NeedVolunteerCard>)
+        }
       </div>
     </div>
     
