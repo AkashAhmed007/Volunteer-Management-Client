@@ -15,6 +15,8 @@ import NeedVolunteer from './Pages/NeedVolunteer';
 import ProtectedRoute from './PrivateRoute/ProtectedRoute';
 import AddVolunteer from './Pages/AddVolunteer';
 import MyPost from './Pages/MyPost';
+import Volunteerdetails from './Pages/Volunteerdetails';
+import AllProgram from './Pages/AllProgram';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -36,7 +38,8 @@ const router = createBrowserRouter([
       },
       {
         path:'/needvolunteer',
-        element:<ProtectedRoute><NeedVolunteer></NeedVolunteer></ProtectedRoute>
+        element:<ProtectedRoute><NeedVolunteer></NeedVolunteer></ProtectedRoute>,
+        loader: ()=>fetch('http://localhost:8000/addvolunteerdata')
       },
       {
         path:'/addvolunteer',
@@ -48,8 +51,13 @@ const router = createBrowserRouter([
       },
       {
         path:'/addvolunteerdata/:id',
-        element:<ProtectedRoute><NeedVolunteer></NeedVolunteer></ProtectedRoute>,
+        element:<ProtectedRoute><Volunteerdetails></Volunteerdetails></ProtectedRoute>,
         loader:({params})=>fetch(`http://localhost:8000/addvolunteerdata/${params.id}`)
+      },
+      {
+        path:'/AllProgram',
+        element:<ProtectedRoute><AllProgram></AllProgram></ProtectedRoute>,
+        loader: ()=>fetch('http://localhost:8000/addvolunteerdata')
       }
     ]
   },
