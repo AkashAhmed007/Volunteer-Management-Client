@@ -21,7 +21,7 @@ const Home = () => {
         ))}
         </div>
       <div className="text-center">
-        <Link to='/AllProgram' className="btn btn-primary w-1/2">View All</Link >
+        <Link to='/allprogram' className="btn btn-primary w-1/2">View All</Link >
       </div>
     </div>
   );

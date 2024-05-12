@@ -5,7 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../Firebase/FirebaseProvider";
 const AddVolunteer = () => {
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [registerError, setRegisterError] = useState("");
   const {
     register,
@@ -13,7 +13,7 @@ const AddVolunteer = () => {
     formState: { errors },
   } = useForm();
   const [startDate, setStartDate] = useState(new Date());
-  const date = startDate.toISOString().substr(0, 10)
+  const date = startDate.toISOString().substr(0, 10);
   const onSubmit = (data) => {
     const {
       Thumbnail,
@@ -34,10 +34,9 @@ const AddVolunteer = () => {
       email,
       name,
       Description,
-      date
+      date,
     };
-    console.log(addVolunteerInfo)
-
+   
     fetch("http://localhost:8000/addvolunteerdata", {
       method: "POST",
       headers: {
@@ -175,7 +174,7 @@ const AddVolunteer = () => {
                 </label>
                 <br />
                 <DatePicker
-                className="w-full px-4 py-2 rounded-md"
+                  className="w-full px-4 py-2 rounded-md"
                   showIcon
                   selected={startDate}
                   onChange={(date) => setStartDate(date)}

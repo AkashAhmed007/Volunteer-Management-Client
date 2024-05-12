@@ -1,8 +1,11 @@
-import {useLoaderData } from "react-router-dom";
+import { useContext } from "react";
+import {Link, useLoaderData } from "react-router-dom";
+import { AuthContext } from "../Firebase/FirebaseProvider";
 
 const Volunteerdetails = () => {
   const volunteerDetails = useLoaderData();
-  const {Thumbnail,Title,Category,date} = volunteerDetails
+  const {user} = useContext(AuthContext)
+  const {_id, Thumbnail, Title, Category, date,Description,Location,volunteers,email,name} = volunteerDetails
   return (
     <>
       <div className="min-h-screen my-20">
@@ -11,22 +14,30 @@ const Volunteerdetails = () => {
         <p>{Category}</p>
         <p>{date}</p>
         <div className="card-actions justify-end">
-          <button
+          <Link to={`/addvolunteerdata/${_id}`}
             className="btn btn-primary"
             onClick={() => document.getElementById("my_modal_1").showModal()}
           >
            Be Vlounteer
-          </button>
+          </Link>
           <dialog id="my_modal_1" className="modal">
             <div className="modal-box">
-              <h3 className="font-bold text-lg">Hello!</h3>
-              <p className="py-4">
-                Press ESC key or click the button below to close
+            <img src={Thumbnail}/>
+              <h3 className="font-bold text-lg underline">Program-Title: {Title}</h3>
+              <p className="font-bold">Category: {Category}</p>
+              <p className="py-4 underline">
+               Description: {Description}
               </p>
+              <p className="font-bold">Location: {Location}</p>
+              <p className="font-bold">No of Volunteers: {volunteers}</p>
+              <p className="font-bold">Organizer-Email: {email}</p>
+              <p className="font-bold">LoggedIn User Email: {user?.email}</p>
+              <p className="font-bold">Organizaation-Name: {name}</p>
+              <p className="font-bold">LoggedIn User Name: {user?.displayName}</p>
+              
               <div className="modal-action">
                 <form method="dialog">
-                  {/* if there is a button in form, it will close the modal */}
-                  <button className="btn">Close</button>
+                  <button className="btn btn-secondary">Request</button>
                 </form>
               </div>
             </div>
