@@ -17,6 +17,7 @@ import AddVolunteer from './Pages/AddVolunteer';
 import MyPost from './Pages/MyPost';
 import Volunteerdetails from './Pages/Volunteerdetails';
 import AllProgram from './Pages/AllProgram';
+import BeVolunteer from './Pages/BeVolunteer';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
         path:'/AllProgram',
         element:<ProtectedRoute><AllProgram></AllProgram></ProtectedRoute>,
         loader: ()=>fetch('http://localhost:8000/addvolunteerdata')
+      },
+      {
+        path:'/bevolunteer',
+        element:<BeVolunteer></BeVolunteer>
       }
     ]
   },
