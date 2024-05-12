@@ -21,9 +21,6 @@ const { user, signInUser, googleLogin} = useContext(AuthContext);
           icon: "success",
           confirmButtonText: "Ok",
         });
-       
-      } else {
-        alert("Please Register first");
       }
       navigate(location?.state || "/",{replace:true});
     });

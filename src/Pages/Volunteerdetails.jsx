@@ -1,11 +1,47 @@
 import { useContext } from "react";
-import {Link, useLoaderData } from "react-router-dom";
+import {Link, useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Firebase/FirebaseProvider";
+import Swal from "sweetalert2";
 
 const Volunteerdetails = () => {
   const volunteerDetails = useLoaderData();
   const {user} = useContext(AuthContext)
-  const {_id, Thumbnail, Title, Category, date,Description,Location,volunteers,email,name} = volunteerDetails
+  const {_id,Thumbnail, Title, Category,date,Description,Location,volunteers,email,name} = volunteerDetails
+  const navigate = useNavigate()
+  const requestData = {
+    "Thumbnail" : Thumbnail,
+    "Title" : Title,
+    "Category":Category,
+    "date":date,
+    "Description":Description,
+    "Location":Location,
+    "volunteers":volunteers,
+    "OrganizeEmail":email,
+    "UserEmail":user?.email,
+    "OrganizeName":name,
+    "UserName":user?.displayName
+  }
+  const handleRequest = ()=>{
+    fetch('http://localhost:8000/requestvolunteer',{
+      method:'POST',
+      headers:{
+        'content-type':'application/json'
+      },
+      body: JSON.stringify(requestData),
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      if (data.insertedId) {
+        Swal.fire({
+          title: "You have requested successfully!",
+          text: "Do you want to continue",
+          icon: "success",
+          confirmButtonText: "Ok",
+        });
+      }
+      navigate(location?.state || "/",{replace:true});
+    })
+  }
   return (
     <>
       <div className="min-h-screen my-20">
@@ -37,7 +73,8 @@ const Volunteerdetails = () => {
               
               <div className="modal-action">
                 <form method="dialog">
-                  <button className="btn btn-secondary">Request</button>
+                  <Link to='/' className="btn btn-primary mr-5">Go Back</Link>
+                  <button onClick={handleRequest} className="btn btn-secondary">Request</button>
                 </form>
               </div>
             </div>
