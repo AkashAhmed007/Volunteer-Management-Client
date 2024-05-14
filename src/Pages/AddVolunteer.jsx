@@ -4,9 +4,11 @@ import Swal from "sweetalert2";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../Firebase/FirebaseProvider";
+import { useNavigate } from "react-router-dom";
 const AddVolunteer = () => {
   const { user } = useContext(AuthContext);
   const [registerError, setRegisterError] = useState("");
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -46,7 +48,6 @@ const AddVolunteer = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.insertedId) {
           Swal.fire({
             title: "You have added Volunteer Info successfully!",
@@ -56,6 +57,7 @@ const AddVolunteer = () => {
           });
         }
       });
+      navigate(location?.state || "/",{replace:true})
     setRegisterError("");
   };
   return (

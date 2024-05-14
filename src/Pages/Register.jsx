@@ -35,11 +35,11 @@ const Register = () => {
         icon: 'success',
         confirmButtonText: 'Ok'
       })
-      navigate(location?.state || "/",{replace:true})
     })
     .catch(error=>{
       console.log(error)
     })
+    navigate(location?.state || "/",{replace:true})
   }
   return (
     <div className="min-h-screen my-20 bg-[#4B5563] mx-5">

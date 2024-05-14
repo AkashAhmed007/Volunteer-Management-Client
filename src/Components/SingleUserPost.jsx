@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 const SingleUserPost = ({post}) => {
-    const {Thumbnail,Title,name,Location} = post
-    console.log(Thumbnail,Title,name,Location)
-  return (
+const {Thumbnail,Title,name,Location,_id} = post
+return (
     <div>
-      <div className="overflow-x-auto">
+        <div className="overflow-x-auto">
+          <p className="text-3xl font-bold text-center border border-b-2 p-4">My Need Volunteer</p>
         <table className="table">
           {/* head */}
           <thead>
@@ -39,8 +40,8 @@ const SingleUserPost = ({post}) => {
               </td>
               <td>{Location}</td>
               <th>
-                <button className="btn btn-primary btn-xs mr-3">Update</button>
-                <button className="btn btn-warning btn-xs">Delete</button>
+                <Link to={`/updatepost/${_id}`} className="btn btn-primary btn-md mr-3">Update</Link>
+                <Link className="btn btn-warning btn-md">Delete</Link>
               </th>
             </tr>
           </tbody>

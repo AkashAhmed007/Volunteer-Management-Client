@@ -9,17 +9,23 @@ const MyPost = () => {
     axios
       .get(`http://localhost:8000/addvolunteerdataByEmail/${user?.email}`)
       .then((data) => {
-        setUserPosts(data.data);
+          setUserPosts(data.data);
       });
   }, [user]);
-  return (
-    <div className="min-h-screen my-20">
-        {
-          userPosts.map(post=><SingleUserPost key={post._id} post={post}></SingleUserPost>)
-          
-        }
-    </div>
-  );
+  if(userPosts.length === 0){
+    return (<p className="min-h-screen my-20">dont have data</p>);
+  }else{
+    return (
+      <div className="min-h-screen my-20">
+        
+          {
+            userPosts.map(post=><SingleUserPost key={post._id} post={post}></SingleUserPost>)
+            
+          }
+      </div>
+    );
+  }
+  
 };
 
 export default MyPost;
