@@ -75,6 +75,10 @@ const router = createBrowserRouter([
         path:'/updatepost/:id',
         element:<ProtectedRoute><UpdatePost></UpdatePost></ProtectedRoute>,
         loader:({params})=> fetch(`http://localhost:8000/updatepost/${params.id}`)
+      },{
+        path:'/requestvolunteer/:id',
+        element:<MyPost></MyPost>,
+        loader:({params})=>fetch(`http://localhost:8000/requestvolunteer/${params.id}`)
       }
     ]
   },

@@ -1,39 +1,40 @@
-import PropTypes from "prop-types";
 import { Link, useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import Swal from "sweetalert2";
-const SingleUserPost = ({post}) => {
-const {Thumbnail,Title,name,Location,_id} = post
+const SingleRequestPost = ({req}) => {
+const {_id,Thumbnail,Title,name,Location,Description} = req;
 const navigate = useNavigate()
 const handleDelete = (_id) => {
-  Swal.fire({
-    title: "Are you sure?",
-    text: "You won't be able to revert this!",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, delete it!",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      fetch(`http://localhost:8000/updatepost/${_id}`, {
-        method: "DELETE"
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.deletedCount > 0) {
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your post has been deleted.",
-                icon: "success"
-              });
-          }
-          navigate('/mypost')
-        });
-    }
-  });
-};
-return (
-    <div>
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:8000/requestvolunteer/${_id}`, {
+          method: "DELETE"
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+                Swal.fire({
+                  title: "Deleted!",
+                  text: "Your Request has been Canceled.",
+                  icon: "success"
+                });
+            }
+            navigate('/mypost')
+          });
+      }
+    });
+  };
+    return (
+        <div>
+        <div>
         <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
@@ -65,22 +66,21 @@ return (
                 </div>
               </td>
               <td>
-                {Title}
+               {Description}
               </td>
               <td>{Location}</td>
               <th>
-                <Link to={`/updatepost/${_id}`} className="btn btn-primary btn-md mr-3">Update</Link>
-                <Link onClick={()=>handleDelete(_id)} className="btn btn-warning btn-md">Delete</Link>
+                <Link onClick={()=>handleDelete(_id)}  className="btn btn-accent btn-md">Cancel</Link>
               </th>
             </tr>
           </tbody>
         </table>
       </div>
-    </div>
-  );
+    </div> 
+        </div>
+    );
 };
-
-SingleUserPost.propTypes = {
-    post: PropTypes.object
+SingleRequestPost.propTypes = {
+    req: PropTypes.object,
   };
-export default SingleUserPost;
+export default SingleRequestPost;

@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 const NeedVolunteerCard = ({ volunteer }) => {
   const {
-    _id,
     Thumbnail,
     Title,
     Category,
@@ -69,7 +68,7 @@ const NeedVolunteerCard = ({ volunteer }) => {
               <span className="mx-4 text-xs text-gray-600 dark:text-gray-300">
                 Deadline: {date}
               </span>
-              <Link to={`/addvolunteerdata/${_id}`} className="btn btn-primary">View Details</Link>
+              <Link to='/' className="btn btn-primary">View Details</Link>
             </div>
           </div>
         </div>
