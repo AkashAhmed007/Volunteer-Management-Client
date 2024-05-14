@@ -68,12 +68,12 @@ const router = createBrowserRouter([
       },
       {
         path:'/updatepost',
-        element:<UpdatePost></UpdatePost>,
+        element:<ProtectedRoute><UpdatePost></UpdatePost></ProtectedRoute>,
         loader:()=> fetch('http://localhost:8000/updatepost')
       },
       {
         path:'/updatepost/:id',
-        element:<UpdatePost></UpdatePost>,
+        element:<ProtectedRoute><UpdatePost></UpdatePost></ProtectedRoute>,
         loader:({params})=> fetch(`http://localhost:8000/updatepost/${params.id}`)
       }
     ]

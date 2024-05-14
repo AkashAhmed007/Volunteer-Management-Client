@@ -1,8 +1,9 @@
 import { useState } from "react";
 import DatePicker from "react-datepicker";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData,useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 const UpdatePost = () => {
+const navigate = useNavigate();
 const data = useLoaderData()
 const {_id,
   Thumbnail,
@@ -29,7 +30,6 @@ const handleSubmit = (e)=>{
         const UpdatepostedData ={
             Thumbnail,Title,Description,Category,Location,volunteers,date,email,name
         }
-console.log(UpdatepostedData) 
 fetch(`http://localhost:8000/updatepost/${_id}`,{
       method: 'PUT',
       headers:{
@@ -39,7 +39,6 @@ fetch(`http://localhost:8000/updatepost/${_id}`,{
     })
     .then(res=>res.json())
     .then(data=>{
-      console.log(data)
       if(data.modifiedCount > 0){
         Swal.fire({
           title: 'You have Updated Post successfully!',
@@ -48,8 +47,9 @@ fetch(`http://localhost:8000/updatepost/${_id}`,{
           confirmButtonText: 'Ok'
         })
       }
+      navigate('/mypost')
     })
-    }
+  }
 return (
 <div className="min-h-screen my-20">
     <section className="p-6 dark:bg-gray-100 dark:text-gray-900 bg-[url('https://i.ibb.co/Lp1cRjr/background-2203989-1280.jpg')] bg-no-repeat bg-center bg-cover">

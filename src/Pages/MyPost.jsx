@@ -17,7 +17,7 @@ const MyPost = () => {
   }else{
     return (
       <div className="min-h-screen my-20">
-        
+        <p className="text-3xl font-bold text-center border border-b-2 p-4">My Need Volunteer</p>
           {
             userPosts.map(post=><SingleUserPost key={post._id} post={post}></SingleUserPost>)
             
