@@ -2,15 +2,19 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 const NeedVolunteerCard = ({ volunteer }) => {
   const {
+    _id,
     Thumbnail,
     Title,
     Category,
     Location,
     volunteers,
-    email,
-    name,
+    OrganizeEmail,
+    UserEmail,
+    OrganizeName,
     Description,
     date,
+    UserName,
+    Status
   } = volunteer;
   return (
     <div>
@@ -37,6 +41,10 @@ const NeedVolunteerCard = ({ volunteer }) => {
             </p>
             <p>Location: {Location}</p>
             <p>Volunteer Need: {volunteers}</p>
+            <p>{OrganizeName}</p>
+            <p>{UserName}</p>
+            <p className="mr-2">{UserEmail}</p>
+            <p>{Status}</p>
           </div>
 
           <div className="mt-4">
@@ -47,19 +55,21 @@ const NeedVolunteerCard = ({ volunteer }) => {
                   src={Thumbnail}
                   alt="Avatar"
                 />
-                <p className="mr-2">{email}</p>
+                <p className="mr-2">{OrganizeEmail}</p><br />
+                
                 <a
                   href="#"
                   className="mx-2 font-semibold text-gray-700 dark:text-gray-200"
                   role="link"
                 >
-                  {name}
+                  
+                  
                 </a>
               </div>
               <span className="mx-4 text-xs text-gray-600 dark:text-gray-300">
                 Deadline: {date}
               </span>
-              <Link to='' className="btn btn-primary">View Details</Link>
+              <Link to={`/addvolunteerdata/${_id}`} className="btn btn-primary">View Details</Link>
             </div>
           </div>
         </div>

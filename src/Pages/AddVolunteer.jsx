@@ -190,13 +190,9 @@ const AddVolunteer = () => {
                   type="text"
                   placeholder="User Email"
                   defaultValue={user?.email}
-                  disabled
                   className="w-full px-4 py-2 rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300"
                   {...register("email", { required: true })}
                 />
-                {errors.email && (
-                  <span className="text-red-500">This field is required</span>
-                )}
               </div>
               <div className="col-span-full sm:col-span-3">
                 <label htmlFor="name" className="text-xl font-bold text-white">
@@ -207,13 +203,9 @@ const AddVolunteer = () => {
                   type="text"
                   placeholder="Organizer name"
                   defaultValue={user?.displayName}
-                  disabled
                   className="w-full px-4 py-2 rounded-md focus:ring dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300"
                   {...register("name", { required: true })}
                 />
-                {errors.name && (
-                  <span className="text-red-500">This field is required</span>
-                )}
               </div>
               <div className="col-span-full">
                 <label

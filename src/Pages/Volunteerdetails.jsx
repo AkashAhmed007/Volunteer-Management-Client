@@ -19,7 +19,8 @@ const Volunteerdetails = () => {
     "OrganizeEmail":email,
     "UserEmail":user?.email,
     "OrganizeName":name,
-    "UserName":user?.displayName
+    "UserName":user?.displayName,
+    "Status": "Requested"
   }
   const handleRequest = ()=>{
     fetch('http://localhost:8000/requestvolunteer',{
@@ -70,7 +71,7 @@ const Volunteerdetails = () => {
               <p className="font-bold">LoggedIn User Email: {user?.email}</p>
               <p className="font-bold">Organizaation-Name: {name}</p>
               <p className="font-bold">LoggedIn User Name: {user?.displayName}</p>
-              
+              <p className="font-bold">Status: Requested</p>
               <div className="modal-action">
                 <form method="dialog">
                   <Link to='/' className="btn btn-primary mr-5">Go Back</Link>
