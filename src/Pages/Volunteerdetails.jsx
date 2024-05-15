@@ -23,7 +23,7 @@ const Volunteerdetails = () => {
     "Status": "Requested"
   }
   const handleRequest = ()=>{
-    fetch('http://localhost:8000/requestvolunteer',{
+    fetch('https://volunteer-management-server-side.vercel.app/requestvolunteer',{
       method:'POST',
       headers:{
         'content-type':'application/json'

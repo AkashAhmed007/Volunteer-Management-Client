@@ -39,7 +39,7 @@ const AddVolunteer = () => {
       date,
     };
    
-    fetch("http://localhost:8000/addvolunteerdata", {
+    fetch("https://volunteer-management-server-side.vercel.app/addvolunteerdata", {
       method: "POST",
       headers: {
         "content-type": "application/json",

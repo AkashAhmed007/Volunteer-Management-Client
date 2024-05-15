@@ -29,7 +29,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home/>,
-        loader: ()=>fetch('http://localhost:8000/addvolunteerdata')
+        loader: ()=>fetch('https://volunteer-management-server-side.vercel.app/addvolunteerdata')
       },
       {
         path:'/login',
@@ -42,7 +42,7 @@ const router = createBrowserRouter([
       {
         path:'/needvolunteer',
         element:<ProtectedRoute><NeedVolunteer></NeedVolunteer></ProtectedRoute>,
-        loader: ()=>fetch('http://localhost:8000/requestvolunteer')
+        loader: ()=>fetch('https://volunteer-management-server-side.vercel.app/requestvolunteer')
       },
       {
         path:'/addvolunteer',
@@ -55,12 +55,12 @@ const router = createBrowserRouter([
       {
         path:'/addvolunteerdata/:id',
         element:<ProtectedRoute><Volunteerdetails></Volunteerdetails></ProtectedRoute>,
-        loader:({params})=>fetch(`http://localhost:8000/addvolunteerdata/${params.id}`)
+        loader:({params})=>fetch(`https://volunteer-management-server-side.vercel.app/addvolunteerdata/${params.id}`)
       },
       {
         path:'/allprogram',
         element:<ProtectedRoute><AllProgram></AllProgram></ProtectedRoute>,
-        loader: ()=>fetch('http://localhost:8000/allprogram')
+        loader: ()=>fetch('https://volunteer-management-server-side.vercel.app/allprogram')
       },
       {
         path:'/bevolunteer',
@@ -69,16 +69,16 @@ const router = createBrowserRouter([
       {
         path:'/updatepost',
         element:<ProtectedRoute><UpdatePost></UpdatePost></ProtectedRoute>,
-        loader:()=> fetch('http://localhost:8000/updatepost')
+        loader:()=> fetch('https://volunteer-management-server-side.vercel.app/updatepost')
       },
       {
         path:'/updatepost/:id',
         element:<ProtectedRoute><UpdatePost></UpdatePost></ProtectedRoute>,
-        loader:({params})=> fetch(`http://localhost:8000/updatepost/${params.id}`)
+        loader:({params})=> fetch(`https://volunteer-management-server-side.vercel.app/updatepost/${params.id}`)
       },{
         path:'/requestvolunteer/:id',
         element:<MyPost></MyPost>,
-        loader:({params})=>fetch(`http://localhost:8000/requestvolunteer/${params.id}`)
+        loader:({params})=>fetch(`https://volunteer-management-server-side.vercel.app/requestvolunteer/${params.id}`)
       }
     ]
   },

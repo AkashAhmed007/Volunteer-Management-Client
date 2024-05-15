@@ -30,7 +30,7 @@ const handleSubmit = (e)=>{
         const UpdatepostedData ={
             Thumbnail,Title,Description,Category,Location,volunteers,date,email,name
         }
-fetch(`http://localhost:8000/updatepost/${_id}`,{
+fetch(`https://volunteer-management-server-side.vercel.app/updatepost/${_id}`,{
       method: 'PUT',
       headers:{
         'content-type':'application/json'

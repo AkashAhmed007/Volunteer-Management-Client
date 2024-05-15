@@ -12,11 +12,11 @@ const MyPost = () => {
   const navigate = useNavigate()
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/addvolunteerdataByEmail/${user?.email}`)
+      .get(`https://volunteer-management-server-side.vercel.app/addvolunteerdataByEmail/${user?.email}`)
       .then((data) => {
           setUserPosts(data.data);
       });
-      axios.get('http://localhost:8000/requestvolunteer')
+      axios.get('https://volunteer-management-server-side.vercel.app/requestvolunteer')
       .then(data=>{
         setRequestPosts(data.data)
       })
@@ -34,7 +34,7 @@ const MyPost = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:8000/updatepost/${_id}`, {
+        fetch(`https://volunteer-management-server-side.vercel.app/updatepost/${_id}`, {
           method: "DELETE"
         })
           .then((res) => res.json())
@@ -65,7 +65,7 @@ const handleDelete = (_id) => {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
-          fetch(`http://localhost:8000/requestvolunteer/${_id}`, {
+          fetch(`https://volunteer-management-server-side.vercel.app/requestvolunteer/${_id}`, {
             method: "DELETE"
           })
             .then((res) => res.json())
