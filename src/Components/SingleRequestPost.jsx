@@ -1,38 +1,8 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import PropTypes from "prop-types";
-import Swal from "sweetalert2";
-const SingleRequestPost = ({req}) => {
+const SingleRequestPost = ({req,handleDelete}) => {
 const {_id,Thumbnail,Title,name,Location,Description} = req;
-const navigate = useNavigate()
-const handleDelete = (_id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        fetch(`http://localhost:8000/requestvolunteer/${_id}`, {
-          method: "DELETE"
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.deletedCount > 0) {
-                Swal.fire({
-                  title: "Deleted!",
-                  text: "Your Request has been Canceled.",
-                  icon: "success"
-                });
-            }
-            navigate('/mypost')
-          });
-      }
-    });
-  };
-    return (
+return (
         <div>
         <div>
         <div className="overflow-x-auto">
@@ -82,5 +52,6 @@ const handleDelete = (_id) => {
 };
 SingleRequestPost.propTypes = {
     req: PropTypes.object,
+    handleDelete: PropTypes.func
   };
 export default SingleRequestPost;
