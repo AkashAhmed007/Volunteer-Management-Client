@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Firebase/FirebaseProvider";
+import { Helmet } from "react-helmet";
 const Login = () => {
 const { user, signInUser, googleLogin} = useContext(AuthContext);
   const navigate = useNavigate();
@@ -56,24 +57,20 @@ const onSubmit = (data) => {
   };
   return (
     <div className="min-h-screen my-20">
+      <Helmet>
+        <title>HelpTheFuture-Login</title>
+      </Helmet>
       <div className="container px-6 mx-auto bg-gray-600">
         <div className="flex flex-col items-center py-6 lg:h-[36rem] lg:flex-row">
           <div className="lg:w-1/2">
             <h2 className="text-3xl font-semibold text-gray-100 lg:text-4xl">
-              Brand
+             Help The Future
             </h2>
 
             <h3 className="mt-2 text-2xl font-semibold text-gray-100">
               Hello <span className="text-blue-400">Guest</span>
             </h3>
-
-            <p className="mt-4 text-gray-100">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam,
-              eum modi incidunt adipisci quod porro et non exercitationem quasi,
-              maxime culpa ut nemo ab delectus saepe iste nostrum explicabo a?
-            </p>
           </div>
-
           <div className="flex mt-10 lg:w-1/2 lg:justify-end lg:mt-10 ">
             <div className="w-full max-w-md mt-16 rounded-lg dark:bg-gray-800">
               <div className="px-6 py-8 text-center">

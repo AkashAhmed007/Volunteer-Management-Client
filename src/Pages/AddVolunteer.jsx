@@ -5,6 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../Firebase/FirebaseProvider";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 const AddVolunteer = () => {
   const { user } = useContext(AuthContext);
   const [registerError, setRegisterError] = useState("");
@@ -62,6 +63,9 @@ const AddVolunteer = () => {
   };
   return (
     <div className="min-h-screen my-20">
+       <Helmet>
+        <title>HelpTheFuture-Add-Volunteer</title>
+      </Helmet>
       <section className="p-6 dark:bg-gray-100 dark:text-gray-900 bg-[url('https://i.ibb.co/vQ1vX8N/pexels-cottonbro-6565759.jpg')] bg-no-repeat bg-center bg-cover">
         <form
           onSubmit={handleSubmit(onSubmit)}

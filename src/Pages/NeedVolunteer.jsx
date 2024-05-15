@@ -1,5 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import NeedVolunteerCard from "../Components/NeedVolunteerCard";
+import { Helmet } from "react-helmet";
 const NeedVolunteer = () => {
   const needVolunteer = useLoaderData()
   const handleSearch = (e)=>{
@@ -10,6 +11,9 @@ const NeedVolunteer = () => {
   return (
     <>
     <div className="min-h-screen my-20">
+    <Helmet>
+        <title>HelpTheFuture-Need-Volunteer</title>
+      </Helmet>
       <div className="bg-[url('https://i.ibb.co/wB26ZL8/pexels-cottonbro-6590920.jpg')] bg-no-repeat bg-cover bg-center w-full h-96 flex flex-col items-center justify-center mb-5">
         <h1 className="text-5xl text-white font-bold">Need Volunteer</h1>
         <div className="w-1/2 mx-auto mt-8">

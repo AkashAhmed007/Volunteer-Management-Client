@@ -2,6 +2,7 @@ import { useContext } from "react";
 import {Link, useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Firebase/FirebaseProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const Volunteerdetails = () => {
   const volunteerDetails = useLoaderData();
@@ -45,7 +46,10 @@ const Volunteerdetails = () => {
   }
   return (
     <>
-      <div className="min-h-screen my-20">
+      <div className="min-h-screen my-20 mx-10">
+      <Helmet>
+        <title>HelpTheFuture-VolunteerDetails</title>
+      </Helmet>
         <img src={Thumbnail} alt="" />
         <p>{Title}</p>
         <p>{Category}</p>

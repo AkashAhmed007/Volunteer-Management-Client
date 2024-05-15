@@ -87,7 +87,10 @@ const handleDelete = (_id) => {
 
 
   if(userPosts.length === 0){
-    return (<p className="min-h-screen my-20">dont have data</p>);
+    return (<div className="min min-h-screen my-20 bg-[url('https://i.ibb.co/Qpbr4mn/articles-blank-main.jpg')] bg-no-repeat bg-cover bg-center w-full h-96">
+      <p className="text-5xl font-bold text-center p-16">Please Add details...</p>
+    </div>
+    );
   }else{
     return (
       <div className="min-h-screen my-20">

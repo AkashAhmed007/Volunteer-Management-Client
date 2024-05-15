@@ -2,10 +2,15 @@ import { Link, useLoaderData } from "react-router-dom";
 import Banner from "../Components/Banner";
 import VolunteerNeedsNow from "../Components/VolunteerNeedsNow";
 import Hero from "../Components/Hero";
+import {Helmet} from "react-helmet";
 const Home = () => {
   const volunteerData = useLoaderData();
   return (
+   
     <div className="min-h-screen my-20">
+      <Helmet>
+        <title>HelpTheFuture-Home</title>
+      </Helmet>
       <div>
         <Hero></Hero>
       </div>

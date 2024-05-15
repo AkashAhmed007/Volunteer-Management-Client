@@ -5,6 +5,7 @@ import { useForm} from "react-hook-form"
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Swal from 'sweetalert2'
 import { AuthContext } from "../Firebase/FirebaseProvider";
+import { Helmet } from "react-helmet";
 const Register = () => {
     const {createUser} = useContext(AuthContext)
   const navigate = useNavigate();
@@ -43,6 +44,9 @@ const Register = () => {
   }
   return (
     <div className="min-h-screen my-20 bg-[#4B5563] mx-5">
+       <Helmet>
+        <title>HelpTheFuture-Register</title>
+      </Helmet>
       <div className="px-6 mx-auto max-w-md p-10 space-y-3 bg-white  rounded-xl dark:bg-gray-50 dark:text-gray-800">
         <h1 className="text-3xl font-bold text-center">Register Now!</h1>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-7">
